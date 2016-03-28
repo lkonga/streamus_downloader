@@ -8,8 +8,8 @@ fi
 for entry in "`pwd`"/*.json
 do
     if [ -f "$entry" ];then
-        grep -o 'https://[^"]*' "$entry" | sort | uniq > "noduped_${entry##*/}"
         noduped="noduped_${entry##*/}"
+        grep -o 'https://[^"]*' "$entry" | sort | uniq > "$noduped"
         if [ -f "$noduped" ];then
             FILENAME=${entry##*/}
             BASENAME="${FILENAME%.*}"

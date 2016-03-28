@@ -14,19 +14,14 @@ for entry in "`pwd`"/*.json
 do
     if [ -f "$entry" ];then
         grep -o 'https://[^"]*' "$entry" | sort | uniq > "$dir/${entry##*/}"
+        noduped="$dir/${entry##*/}"
+        if [ -f "$noduped" ];then
+            FILENAME=${noduped##*/}
+            BASENAME="${FILENAME%.*}"
+            youtube-dl -a "$noduped" -i -o "downloads/$BASENAME/%(title)s-%(id)s.%(ext)s"
+            mv "$entry" "$dir2"
+            mv "$noduped" "$dir2/nodupes_$entry"
+        fi
     fi
 done
-
-
-for entry in "`pwd`"/$dir/*.json
-do
-    if [ -f "$entry" ];then
-        FILENAME=${entry##*/}
-        BASENAME="${FILENAME%.*}"
-        youtube-dl -a "$entry" -i -o "downloads/$BASENAME/%(title)s-%(id)s.%(ext)s"
-        mv "$entry" "$dir2"
-    fi
-done
-
-
 

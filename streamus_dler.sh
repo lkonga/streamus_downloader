@@ -5,6 +5,11 @@ if [ ! -d $dir ];then
     mkdir $dir
 fi
 
+dir2="done"
+if [ ! -d $dir2 ];then
+    mkdir $dir2
+fi
+
 for entry in "`pwd`"/*.json
 do
     if [ -f "$entry" ];then
@@ -19,6 +24,7 @@ do
         FILENAME=${entry##*/}
         BASENAME="${FILENAME%.*}"
         youtube-dl -a "$entry" -i -o "downloads/$BASENAME/%(title)s-%(id)s.%(ext)s"
+        mv "$entry" "$dir2"
     fi
 done
 

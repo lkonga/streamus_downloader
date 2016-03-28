@@ -1,3 +1,5 @@
+#!/bin/bash
+
 dir="nodupes"
 if [ ! -d $dir ];then
     mkdir $dir
@@ -6,7 +8,7 @@ fi
 for entry in "`pwd`"/*.json
 do
     if [ -f "$entry" ];then
-        grep -o 'https://[^"]*' "$entry" | sort | uniq > "$dir/"${entry##*/}
+        grep -o 'https://[^"]*' "$entry" | sort | uniq > "$dir/${entry##*/}"
     fi
 done
 

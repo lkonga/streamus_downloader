@@ -7,12 +7,12 @@ fi
 for entry in "`pwd`"/*.json
 do
     if [ -f "$entry" ];then
-        grep -o 'https://[^"]*' "$entry" | sort | uniq > "nodupes/"${entry##*/}
+        grep -o 'https://[^"]*' "$entry" | sort | uniq > "$dir/"${entry##*/}
     fi
 done
 
 
-for entry in "`pwd`"/nodupes/*.json
+for entry in "`pwd`"/$dir/*.json
 do
     if [ -f "$entry" ];then
         FILENAME=${entry##*/}

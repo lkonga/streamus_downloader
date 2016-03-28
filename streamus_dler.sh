@@ -20,7 +20,7 @@ do
             BASENAME="${FILENAME%.*}"
             youtube-dl -a "$noduped" -i -o "downloads/$BASENAME/%(title)s-%(id)s.%(ext)s"
             mv "$entry" "$dir2"
-            mv "$noduped" "$dir2/nodupes_$entry"
+            mv "$noduped" "$dir2/nodupes_$noduped"
         fi
     fi
 done

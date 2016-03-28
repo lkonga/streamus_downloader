@@ -1,6 +1,5 @@
 dir="nodupes"
-if [ ! -d $dir ]; 
-then
+if [ ! -d $dir ];then
     mkdir $dir
 fi
 
